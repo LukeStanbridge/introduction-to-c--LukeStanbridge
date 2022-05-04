@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	int arr1[NUM_ITEMS] = { 1, 3, 5, 7, 9, 11, 13, 15 };
 
 	// The numbers in the array are assumed to be sorted
-	// search for the values 9, 1, 15, 0
+	// search for the values 9, 1, 15, 0, 16
 
 	TestResult( BinarySearch(arr1, NUM_ITEMS, 9),  &arr1[4]   );
 	TestResult( BinarySearch(arr1, NUM_ITEMS, 1),  &arr1[0]   );
@@ -47,6 +47,13 @@ const int* BinarySearch(const int* arr, int count, int searchVal)
 	// This method should:
 	//	- Return: nullptr if the value is not found
 	//  - Return: pointer to the found value in the array
-	
+
+	for (int i = 0; i < count; i++)
+	{
+		if (arr[i] == searchVal)
+		{
+			return &arr[i];
+		}
+	}	
 	return nullptr;
 }
