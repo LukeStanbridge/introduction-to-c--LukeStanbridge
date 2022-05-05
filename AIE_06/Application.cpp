@@ -37,6 +37,11 @@ void Application::Load()
 	// -----------------------------------------------------
 	
 	// write your code here
+	/*srand(time(0));
+	for (int i = 0; i < tileIndex; i++)
+	{
+		m_tiles[tileIndex] = rand() % 40 + 1;
+	}*/
 
 	// -----------------------------------------------------
 }
