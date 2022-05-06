@@ -37,11 +37,10 @@ void Application::Load()
 	// -----------------------------------------------------
 	
 	// write your code here
-	/*srand(time(0));
-	for (int i = 0; i < tileIndex; i++)
+	for (int i = 0; i < ROWS * COLS; i++)
 	{
-		m_tiles[tileIndex] = rand() % 40 + 1;
-	}*/
+		m_tiles[i] = rand() % 5 + 0;		
+	}
 
 	// -----------------------------------------------------
 }
@@ -61,9 +60,12 @@ void Application::Update(float deltaTime)
 		// TODO: Calculate row and col index based on the mouse positon
 		int rowIndex = 0; 
 		int colIndex = 0;
+		rowIndex = mousePos.x;
+		colIndex = mousePos.y;
 
 		// TODO: calculate the index of the tile clicked on based on the row/col index
 		int tileIndex = 0;
+		tileIndex = rowIndex * colIndex;
 
 		m_tiles[tileIndex] += 1;
 		if (m_tiles[tileIndex] >= 5)
@@ -86,11 +88,22 @@ void Application::Draw()
 	// 	   We have created a helper function you can use "GetTileColor"
 	// --------------------------------------------------------------------
 	// write your code here
+
 	float xPos = 0;
 	float yPos = 0;
-	Color color = GetTileColor(1); // pass in the tilevalue
+	
 
-	DrawRectangle(xPos, yPos, m_tileWidth, m_tileHeight, color);
+	for (int rowIndex = 0; rowIndex < ROWS; rowIndex++)
+	{
+		for (int colIndex = 0; colIndex < COLS; colIndex++)
+		{
+			xPos = rowIndex * m_tileWidth;
+			yPos = colIndex * m_tileHeight;
+			int index = colIndex + (rowIndex * COLS);
+			Color color = GetTileColor(m_tiles[index]); // pass in the tilevalue
+			DrawRectangle(xPos, yPos, m_tileWidth, m_tileHeight, color);
+		}
+	}
 
 	// --------------------------------------------------------------------
 
