@@ -60,12 +60,12 @@ void Application::Update(float deltaTime)
 		// TODO: Calculate row and col index based on the mouse positon
 		int rowIndex = 0; 
 		int colIndex = 0;
-		rowIndex = mousePos.x;
-		colIndex = mousePos.y;
+		rowIndex = mousePos.x / m_tileWidth;
+		colIndex = mousePos.y / m_tileHeight;
 
 		// TODO: calculate the index of the tile clicked on based on the row/col index
 		int tileIndex = 0;
-		tileIndex = rowIndex * colIndex;
+		tileIndex = colIndex + (rowIndex * COLS);
 
 		m_tiles[tileIndex] += 1;
 		if (m_tiles[tileIndex] >= 5)
@@ -92,7 +92,6 @@ void Application::Draw()
 	float xPos = 0;
 	float yPos = 0;
 	
-
 	for (int rowIndex = 0; rowIndex < ROWS; rowIndex++)
 	{
 		for (int colIndex = 0; colIndex < COLS; colIndex++)
